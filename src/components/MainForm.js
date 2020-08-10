@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import CustomForm from './CustomForm';
 import api from '../api';
@@ -20,13 +19,13 @@ const inputTypes = {
     ],
     "Двушка": [
         {key: 'want_shrimps', name: 'Креветулек хотса'},
-        {key: 'walking_dead', name: 'Exclusive. Полирнуть by 40\&#176;'},
+        {key: 'walking_dead', name: 'Exclusive. Полирнуть by 40 градусов'},
     ],
 }
 
 function MainForm() {
     const [bottleFormsSuggestions, setBottleFormsSuggestions] = useState([]);
-    const [bottleFormValue, setBottleFormValues] = useState(null);
+    const [bottleFormValue, setBottleFormValues] = useState({});
     const [bottleInputValue, setBottleInput] = useState('');
 
     const [beerBrandsSuggestions, setBeerBrandsSuggestions] = useState([]);
@@ -84,8 +83,14 @@ function MainForm() {
         
     }
 
-    const onSubmit = () => {
-
+    const onSubmit = (data) => {
+        api.sendMainForm({
+            data: {
+                ...data,
+                bottle: bottleFormValue,
+                beer: beerBrandsValues,
+            }
+        })
     }
 
     return (
@@ -126,15 +131,11 @@ function MainForm() {
                 />
                 )}
             />
-            <CustomForm />
-            <Button
-                variant={'contained'}
-                color={'primary'}
-                onClick={onSubmit}
-                disabled={buttonDisabled}
-            >
-                Send
-            </Button>
+            {bottleFormValue.name && <CustomForm
+                inputTypes={inputTypes[bottleFormValue.name]}
+                onSubmit={onSubmit}
+                buttonDisabled={buttonDisabled}
+            />}
         </div>
     );
 }

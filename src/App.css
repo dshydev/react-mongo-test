@@ -48,3 +48,12 @@
     width: 300px;
     margin-bottom: 30px;
 }
+
+.customForm {
+  display: flex;
+  flex-direction: column;
+}
+
+.button {
+  margin-top: 10px;
+}
