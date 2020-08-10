@@ -80,6 +80,14 @@ function MainForm() {
         setBeerBrandsValues(value);
     }
 
+    const getSubformData = () => {
+        
+    }
+
+    const onSubmit = () => {
+
+    }
+
     return (
         <div className={'mainForm'}>
             <Autocomplete
@@ -122,7 +130,7 @@ function MainForm() {
             <Button
                 variant={'contained'}
                 color={'primary'}
-                onClick={() => console.log('click')}
+                onClick={onSubmit}
                 disabled={buttonDisabled}
             >
                 Send

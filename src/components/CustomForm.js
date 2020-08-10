@@ -1,7 +1,8 @@
 import React, { useState, useEffect, Fragment, useCallback } from 'react';
 import TextField from '@material-ui/core/TextField';
 
-function CustomForm() {
+function CustomForm({ inputTypes, }) {
+    const []
     return (
         <div className={'customForm'}>
             <FormControlLabel
