@@ -27,6 +27,9 @@ mongoose.connect(config.db.url, config.db.options, function (err, instanse) {
 
 app.use('/api/bottles', bottleController);
 app.use('/api/beerbrands', beerBrandsController);
+app.use('/api/handleform', (req, res, next) => {
+    res.send({status: 'Ok'});
+});
 
 const appErrorHandler = (err, req, res, next) => {
     res.status(500).json(createError(500));

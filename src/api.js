@@ -5,18 +5,33 @@ class Api {
         this.service = httpService;
     }
 
-    async getBeerBrands() {
+    async getBeerBrands(options) {
         try {
-            const response = await this.service.get('api/beerbrands');
+            const response = await this.service.get('api/beerbrands', {
+                params: options.params,
+            });
             return response.data;
         } catch(err) {
             console.log(err);
         }
     }
 
-    async getBottleForms() {
+    async getBottleForms(options) {
         try {
-            const response = await this.service.get('api/bottles');
+            const response = await this.service.get('api/bottles', {
+                params: options.params,
+            });
+            return response.data;
+        } catch(err) {
+            console.log(err);
+        }
+    }
+
+    async sendMainForm(options) {
+        try {
+            const response = await this.service.post('api/handleform', {
+                data: options.data,
+            });
             return response.data;
         } catch(err) {
             console.log(err);
